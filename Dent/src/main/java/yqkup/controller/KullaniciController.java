@@ -29,7 +29,7 @@ public class KullaniciController extends DB {
 	@GetMapping("/liste")
 	private List<Kullanici> getAll() {
 		List<Kullanici> list = new ArrayList<>();
-		String query = "SELECT * FROM " + Variables.TABLE_PERSONEL + " order by id asc";
+		String query = "SELECT * FROM " + Variables.TABLE_KULLANICI + " order by id asc";
 
 		try (Connection connection = baglan(Variables.DB_HOST, Variables.DB_USERNAME, Variables.DB_PASSWORD);
 				Statement statement = connection.createStatement();
@@ -54,7 +54,7 @@ public class KullaniciController extends DB {
 
 	@PostMapping("/tek")
 	private Kullanici getOne(@RequestBody Map<String, String> parametre) {
-		String query = "SELECT * FROM " + Variables.TABLE_PERSONEL + " WHERE id = ?";
+		String query = "SELECT * FROM " + Variables.TABLE_KULLANICI + " WHERE id = ?";
 		Kullanici kullanici = new Kullanici();
 
 		try (Connection connection = baglan(Variables.DB_HOST, Variables.DB_USERNAME, Variables.DB_PASSWORD);
@@ -85,7 +85,7 @@ public class KullaniciController extends DB {
 	private Map<String, String> Ekle(@RequestBody Map<String, String> parametre) throws ParseException {
 		String mesaj = "";
 		Map<String, String> map = new HashMap<String, String>();
-		String query = "INSERT INTO " + Variables.TABLE_PERSONEL
+		String query = "INSERT INTO " + Variables.TABLE_KULLANICI
 				+ " (adi,kadi,sifre,yetki,hatirlaticisoru,hatirlaticicevap) VALUES (?, ?, ?, ?, ?, ?)";
 
 		try (Connection connection = baglan(Variables.DB_HOST, Variables.DB_USERNAME, Variables.DB_PASSWORD);
@@ -120,7 +120,7 @@ public class KullaniciController extends DB {
 	private Map<String, String> Guncelle(@RequestBody Map<String, String> parametre) throws ParseException {
 		String mesaj = "";
 		Map<String, String> map = new HashMap<String, String>();
-		String query = "UPDATE " + Variables.TABLE_PERSONEL
+		String query = "UPDATE " + Variables.TABLE_KULLANICI
 				+ " SET adi=?, kadi=?, sifre=?, yetki=?, hatirlaticisoru=?, hatirlaticicevap=? WHERE id=?";
 
 		try (Connection connection = baglan(Variables.DB_HOST, Variables.DB_USERNAME, Variables.DB_PASSWORD);
@@ -156,7 +156,7 @@ public class KullaniciController extends DB {
 	private Map<String, String> Sil(@RequestBody Map<String, String> parametre) {
 		String mesaj = "";
 		Map<String, String> map = new HashMap<String, String>();
-		String query = "DELETE FROM " + Variables.TABLE_PERSONEL + " WHERE id = ?";
+		String query = "DELETE FROM " + Variables.TABLE_KULLANICI + " WHERE id = ?";
 
 		try (Connection connection = baglan(Variables.DB_HOST, Variables.DB_USERNAME, Variables.DB_PASSWORD);
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {

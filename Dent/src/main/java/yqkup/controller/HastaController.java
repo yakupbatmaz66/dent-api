@@ -101,14 +101,14 @@ public class HastaController extends DB {
 
 			if (affectedRows > 0) {
 				connection.commit();
-				mesaj = "Baskı başarıyla eklendi.";
+				mesaj = "Hasta başarıyla eklendi.";
 			} else {
 				connection.rollback();
-				mesaj = "Baskı eklenirken bir hata oluştu.";
+				mesaj = "Hasta eklenirken bir hata oluştu.";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			mesaj = "Baskı eklenirken bir SQL hatası oluştu: " + e.getMessage();
+			mesaj = "Hasta eklenirken bir SQL hatası oluştu: " + e.getMessage();
 		}
 		map = new HashMap<String, String>();
 		map.put("mesaj", mesaj);
@@ -136,14 +136,14 @@ public class HastaController extends DB {
 
 			if (affectedRows > 0) {
 				connection.commit();
-				mesaj = "Personel başarıyla güncellendi.";
+				mesaj = "Hasta başarıyla güncellendi.";
 			} else {
 				connection.rollback();
-				mesaj = "Personel bulunamadı.";
+				mesaj = "Hasta bulunamadı.";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			mesaj = "Personel güncellenirken bir SQL hatası oluştu: " + e.getMessage();
+			mesaj = "Hasta güncellenirken bir SQL hatası oluştu: " + e.getMessage();
 		}
 		map = new HashMap<String, String>();
 		map.put("mesaj", mesaj);
@@ -164,14 +164,14 @@ public class HastaController extends DB {
 
 			if (rowsAffected > 0) {
 				connection.commit();
-				mesaj = "Personel silme başarılı.";
+				mesaj = "Hasta silme başarılı.";
 			} else {
 				connection.rollback();
-				mesaj = "Personel bulunamadı.";
+				mesaj = "Hasta bulunamadı.";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			mesaj = "Personel silinirken bir SQL hatası oluştu: " + e.getMessage();
+			mesaj = "Hasta silinirken bir SQL hatası oluştu: " + e.getMessage();
 		}
 		map = new HashMap<String, String>();
 		map.put("mesaj", mesaj);

@@ -15,8 +15,10 @@ public class Variables {
 	public static String DB_USERNAME = null;
 	public static String DB_PASSWORD = null;
 	
-	public static String TABLE_PERSONEL = null;
+	public static String TABLE_KULLANICI = null;
 	public static String TABLE_HASTA = null;
+	public static String TABLE_ISLEM = null;
+	public static String TABLE_BUTCE = null;
 	
 	public static void GetVariables() {
 		context = new AnnotationConfigApplicationContext();
@@ -29,8 +31,10 @@ public class Variables {
 			DB_USERNAME = environment.getProperty("db_username");
 			DB_PASSWORD = environment.getProperty("db_password");
 			
-			TABLE_PERSONEL = environment.getProperty("tbl_kullanici");
-			TABLE_HASTA = environment.getProperty("tbl_hasta");
+			TABLE_KULLANICI = environment.getProperty("tbl_kullanicilar");
+			TABLE_HASTA = environment.getProperty("tbl_hastalar");
+			TABLE_ISLEM = environment.getProperty("tbl_islemler");
+			TABLE_BUTCE = environment.getProperty("tbl_butce");
 			
 			System.out.println("Değişkenler Alındı.");
 		} catch (Exception e) {
