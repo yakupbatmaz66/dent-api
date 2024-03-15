@@ -29,7 +29,7 @@ import yqkup.others.*;
 public class HastaController extends DB {
 
 	@GetMapping("/liste")
-	private List<Hasta> getAll() {
+	public static List<Hasta> getAll() {
 		List<Hasta> list = new ArrayList<>();
 		String query = "SELECT * FROM " + Variables.TABLE_HASTA + " order by id asc";
 
@@ -54,13 +54,40 @@ public class HastaController extends DB {
 	}
 
 	@PostMapping("/tek")
-	private Hasta getOne(@RequestBody Map<String, String> parametre) {
+	public static Hasta getOne(@RequestBody Map<String, String> parametre) {
 		String query = "SELECT * FROM " + Variables.TABLE_HASTA + " WHERE id = ?";
 		Hasta hasta = new Hasta();
 
 		try (Connection connection = baglan(Variables.DB_HOST, Variables.DB_USERNAME, Variables.DB_PASSWORD);
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 			preparedStatement.setInt(1, Integer.parseInt(parametre.get("id")));
+
+			try (ResultSet resultSet = preparedStatement.executeQuery();) {
+				if (resultSet.next()) {
+					hasta.setId(resultSet.getInt("id"));
+					hasta.setAdi(resultSet.getString("adi"));
+					hasta.setSoyadi(resultSet.getString("soyadi"));
+					hasta.setTckimlik(resultSet.getString("tckimlik"));
+	                hasta.setDogum(resultSet.getDate("dogum"));
+	                hasta.setKayit(resultSet.getDate("kayit"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return hasta;
+	}
+	
+	public static Hasta Tek(Integer id) {
+		String query = "SELECT * FROM " + Variables.TABLE_HASTA + " WHERE id = ?";
+		Hasta hasta = new Hasta();
+
+		try (Connection connection = baglan(Variables.DB_HOST, Variables.DB_USERNAME, Variables.DB_PASSWORD);
+				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+			preparedStatement.setInt(1, id);
 
 			try (ResultSet resultSet = preparedStatement.executeQuery();) {
 				if (resultSet.next()) {

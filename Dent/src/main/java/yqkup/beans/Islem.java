@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Islem {
 	private Integer id;
-	private Integer hastaid;
+	private Hasta hasta;
 	private String islem;
 }
