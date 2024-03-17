@@ -206,10 +206,7 @@ public class HastaController extends DB {
 	}
 	
 	private Date tarihAyarla(String date) {
-		// String'i LocalDate objesine dönüştür
         LocalDate tarih = LocalDate.parse(date);
-
-        // LocalDate'i java.sql.Date'e dönüştür
         return java.sql.Date.valueOf(tarih);
 	}
 }

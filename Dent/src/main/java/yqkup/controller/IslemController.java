@@ -33,7 +33,7 @@ public class IslemController extends DB {
 
 		try (Connection connection = baglan(Variables.DB_HOST, Variables.DB_USERNAME, Variables.DB_PASSWORD);
 				PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-			preparedStatement.setInt(1, Integer.parseInt(parametre.get("id")));
+			preparedStatement.setInt(1, Integer.parseInt(parametre.get("hastaid")));
 
 			try (ResultSet resultSet = preparedStatement.executeQuery();) {
 				while (resultSet.next()) {
